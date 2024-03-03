@@ -77,8 +77,10 @@ async Task UpdateTask(ToDoDbContext dbContext, HttpContext context, int id, Item
     }
 
     existingItem.IsComplete = updatedItem.IsComplete;
+
     await dbContext.SaveChangesAsync();
     context.Response.StatusCode = StatusCodes.Status200OK;
+  
     await context.Response.WriteAsJsonAsync(existingItem);
 
 }
