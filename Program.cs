@@ -76,16 +76,9 @@ async Task UpdateTask(ToDoDbContext dbContext, HttpContext context, int id, Item
         return;
     }
 
-    // Update the existing item with data from the updatedItem
-    if (updatedItem.Name != null){
-        existingItem.Name = updatedItem.Name;
-    }
-       
     existingItem.IsComplete = updatedItem.IsComplete;
-
     await dbContext.SaveChangesAsync();
     context.Response.StatusCode = StatusCodes.Status200OK;
-  
     await context.Response.WriteAsJsonAsync(existingItem);
 
 }
